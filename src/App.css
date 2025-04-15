@@ -2,7 +2,6 @@ body {
   background-color: #28A745;
   margin: 0;
   padding: 0;
-  /* color: #d1ae22; */
   font-family: poppins, sans-serif;
 }
 
@@ -58,21 +57,17 @@ body {
 }
 
 .animated-left2 {
-  animation: moveFromLeft2 1.7s ease; /* Fixed typo here */
+  animation: moveFromLeft2 1.7s ease; 
 }
 
-/* Hide scrollbars but allow scrolling */
 .hide-scrollbar {
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer 10+ */
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Edge */
+  display: none; 
 }
-
-
-
 
 .perspective {
   perspective: 1000px;
@@ -86,7 +81,7 @@ body {
 .rotateY-180 {
   transform: rotateY(180deg);
 }
-/* From Uiverse.io by AbanoubMagdy1 */ 
+
 .loader {
   --dim: 3rem;
   width: var(--dim);
