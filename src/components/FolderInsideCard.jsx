@@ -16,11 +16,11 @@ export default function FolderInsideCard(props) {
           props.index
         )}
       >
-        {/* 3-Dots Menu */}
+      
         <div className="absolute top-5 right-2 z-10 menu">
           <button
             onClick={(e) => {
-              e.stopPropagation(); // Prevent folder opening
+              e.stopPropagation(); 
               setMenuOpen(!menuOpen);
             }}
           >
@@ -50,7 +50,7 @@ export default function FolderInsideCard(props) {
               <button
               className={`flex w-full px-3 py-2 text-sm justify-evenly`}
               onClick={(e) => {
-                e.stopPropagation(); // Prevent folder opening
+                e.stopPropagation(); 
                 props.handleCardEdit(props.index, "delete");
               }}
             >
@@ -60,7 +60,7 @@ export default function FolderInsideCard(props) {
           )}
         </div>
 
-        {/* Background Design */}
+      
         <div className="absolute inset-0">
           <svg
             viewBox="0 0 400 200"
@@ -77,7 +77,7 @@ export default function FolderInsideCard(props) {
 
         <h2 className="text-xl font-semibold relative">{props.title}</h2>
 
-        {/* Image Container */}
+       
         <div
           className="mt-4 flex flex-wrap gap-2  overflow-y-auto relative hide-scrollbar"
         >
@@ -87,7 +87,7 @@ export default function FolderInsideCard(props) {
                 key={index}
                 src={url}
                 alt={`User Avatar ${index + 1}`}
-                className="w-12 h-12 rounded-lg object-contain" // Changed to object-contain
+                className="w-12 h-12 rounded-lg object-contain" 
               />
             ))}
         </div>
