@@ -21,7 +21,7 @@ const AddDeck = (props) => {
     setCoverImage(null);
     setPreview(null);
     await props.addDeck(folderName, coverImage);
-    props.onClose(); // Call the function passed from parent to add the deck
+    props.onClose(); 
   };
 
   return (
@@ -36,19 +36,19 @@ const AddDeck = (props) => {
           props.onClose();
           setFolderName("");
           setCoverImage(null);
-          setPreview(null); // Reset preview when closing the modal
+          setPreview(null); 
         }}
         className="absolute top-3 right-3 dark:text-white text-black hover:text-gray-700"
       >
         <X size={24} />
       </button>
 
-      {/* Title */}
+    
       <h2 className="text-2xl font-semibold text-center">
         Create New Deck
       </h2>
 
-      {/* Folder Name Input */}
+    
       <div>
         <input
           type="text"
@@ -60,7 +60,7 @@ const AddDeck = (props) => {
         />
       </div>
 
-      {/* File Upload */}
+    
       <div>
         <label className="block text-sm text-gray-400">
           Upload Cover Image{" "}
@@ -83,7 +83,7 @@ const AddDeck = (props) => {
         )}
       </div>
 
-      {/* Submit Button */}
+   
       <button
         type="submit"
         className="w-full bg-teal-500 hover:bg-teal-600 font-bold py-2 rounded-lg text-sm"
