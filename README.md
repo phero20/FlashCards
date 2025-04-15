@@ -1,12 +1,32 @@
-# React + Vite
+# 📚 FlashDeck — Deck & Flashcard Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+A full-featured flashcard application built using React, Vite, Tailwind CSS, Firebase, and Cloudinary. Users can create multiple decks, each containing multiple cards. Cards are flippable, showing a question on one side and an answer on the other. Users can also upload multiple images per card, as well as edit or delete decks and cards.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
+🔖 Create multiple decks.
 
-## Expanding the ESLint configuration
+🃏 Add multiple cards per deck.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🔄 Flip cards to view question/answer.
+
+🖼️ Upload multiple images for each card.
+
+📝 Edit or delete decks and cards.
+
+☁️ Realtime data storage using Firebase Firestore.
+
+🔐 User authentication.
+
+⚡ Built with Vite for fast performance.
+
+🎨 Styled with Tailwind CSS for a clean, responsive UI.
+
+🛠️ Tech Stack
+Frontend: React, Vite, Tailwind CSS
+
+Backend/Database: Firebase (Firestore)
+
+Image Hosting: Cloudinary
+
+Authentication: Firebase Auth
