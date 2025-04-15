@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { BoxInfo } from "../App";
 import logo from "../assets/logo.png";
-import user from '../assets/user.png' // Adjust the path as necessary
+import user from '../assets/user.png' 
 
 export default function Nav(props) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
