@@ -5,7 +5,7 @@ import FolderCard from "./FolderCard";
 import AddDeck from "./AddDeck";
 import Loading from "./Loading";
 
-// Define sequential colors
+
 const colors = [
   { bg: "bg-teal-500", fill: "#128174" },
   { bg: "bg-sky-400", fill: "#2C73AE" },
@@ -17,11 +17,11 @@ export default function Folders({ folders, addDeck, handleFolderEdit, handleOpen
   const [addDeckOpen, setAddDeckOpen] = React.useState(false);
   const [folderArray, setFolderArray] = React.useState([]);
 
-  // Fetch folders when the component mounts
+ 
   useEffect(() => {
     const fetchFolders = async () => {
       try {
-        const response = await folders(); // Fetch folders passed as props
+        const response = await folders(); 
         setFolderArray(response);
       } catch (error) {
         setFolderArray([]);
@@ -40,18 +40,18 @@ export default function Folders({ folders, addDeck, handleFolderEdit, handleOpen
   };
 
   const handleAddNewFolder = (newFolder) => {
-    setFolderArray((prevFolders) => [...prevFolders, newFolder]); // Locally update folder array
+    setFolderArray((prevFolders) => [...prevFolders, newFolder]);
   };
 
   return (
     <div className="h-screen flex flex-col">
-      {/* Navbar */}
+     
       <Nav />
 
-      {/* Header Section */}
+
       <div className="flex justify-center">
         <div className="max-w-screen-xl w-full flex items-center justify-between p-4 dark:text-white text-xl font-bold">
-          {/* Title Section */}
+    
           <div className="flex items-center gap-3">
             <img src={folderIcon} alt="Folder" className="w-8 h-8" />
             <p>
@@ -73,12 +73,12 @@ export default function Folders({ folders, addDeck, handleFolderEdit, handleOpen
         </div>
       </div>
 
-      {/* Scrollable Content */}
+    
       <div className="flex-1 overflow-y-auto flex justify-center">
         <div className="max-w-screen-xl w-full p-4">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-10 place-items-center pb-3">
             {folderArray.map((folder, index) => {
-              // Assign color linearly using modulo
+     
               const linearColor = colors[index % colors.length];
               return (
                 <FolderCard
@@ -97,7 +97,7 @@ export default function Folders({ folders, addDeck, handleFolderEdit, handleOpen
         </div>
       </div>
 
-      {/* Add Deck Modal */}
+  
       <div
         className={`${
           addDeckOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -112,7 +112,7 @@ export default function Folders({ folders, addDeck, handleFolderEdit, handleOpen
           <AddDeck
             onClose={onClose}
             addDeck={addDeck}
-            addNewFolder={handleAddNewFolder} // Add new folder locally
+            addNewFolder={handleAddNewFolder} 
           />}
         </div>
       </div>
