@@ -17,23 +17,23 @@ export default function FolderOpen(props) {
   const [cards, setCards] = useState([]);
   const [addCardOpen, setAddCardOpen] = useState(false);
 
-  // Handles opening the "Add Card" modal
+
   const handleAddCard = () => {
     setAddCardOpen(true);
   };
 
-  // Handles closing the "Add Card" modal
+
   const onClose = () => {
     setAddCardOpen(false);
   };
 
-  // Adds a new card
+ 
   const addCardHandler = async (formData) => {
     try {
-      const newCard = await props.addCard(formData); // Add the card via the parent function
-      setCards((prevCards) => [...prevCards, newCard]); // Append the new card to the local state
-      setAddCardOpen(false); // Close the modal after adding the card
-     
+      const newCard = await props.addCard(formData); 
+      setCards((prevCards) => [...prevCards, newCard]); 
+      setAddCardOpen(false); 
+    
     } catch (error) {
       alert("Error adding card:", error.message);
     }
@@ -60,7 +60,7 @@ export default function FolderOpen(props) {
   return (
     <div className="h-screen w-screen flex flex-col">
       <Nav />
-      {/* Header Section */}
+    
       <div className="flex justify-center">
         <div className="max-w-screen-xl w-full flex items-center justify-between p-4 pl-1 dark:text-white text-xl font-bold">
           <div className="flex items-center gap-2 cursor-pointer">
@@ -90,7 +90,7 @@ export default function FolderOpen(props) {
         </div>
       </div>
 
-      {/* Folder Cards Section */}
+    
       <div className={`flex-1 overflow-y-auto flex justify-center`}>
         <div className="max-w-screen-xl w-full p-4">
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 place-items-center pb-3">
@@ -114,7 +114,7 @@ export default function FolderOpen(props) {
         </div>
       </div>
 
-      {/* Add Card Modal */}
+    
       <div
         className={`${
           addCardOpen
