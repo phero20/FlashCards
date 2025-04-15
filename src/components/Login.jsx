@@ -9,7 +9,7 @@ export default function Login(props) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-      props.handleAuth(username, email, password, isLoginMode); // Pass data to the parent for authentication
+      props.handleAuth(username, email, password, isLoginMode); 
   };
 
   const toggleMode = () => {
@@ -21,10 +21,10 @@ export default function Login(props) {
 
   return (
     <div className="h-screen w-screen flex flex-col items-center justify-evenly bg-transparent">
-      {/* Logo Section */}
+     
       <Logo />
 
-      {/* Form Section */}
+   
       <form
         onSubmit={handleFormSubmit}
         className={`transform transition-transform duration-1000 ease-in-out ${
