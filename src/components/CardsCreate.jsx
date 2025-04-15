@@ -27,25 +27,23 @@ export default function CardsCreate(props) {
     formData.images = [];
   };
 
-  // Function to auto-resize the textarea based on its content
+
   const autoResize = (e) => {
-    e.target.style.height = "auto"; // Reset height to auto
-    e.target.style.height = `${e.target.scrollHeight}px`; // Set height based on content
+    e.target.style.height = "auto"; 
+    e.target.style.height = `${e.target.scrollHeight}px`; 
   };
 
   return (
     <div className="fixed inset-0 bg-white dark:bg-black flex items-center justify-center z-50 hide-scrollbar dark:text-white text-black">
-      {/* Main Container */}
+    
       <div className="w-[95%] max-h-[95vh] overflow-y-auto sm:w-3/4 lg:w-2/3 xl:w-1/2 max-w-4xl dark:bg-black bg-white rounded-lg shadow-2xl px-6 pb-6 hide-scrollbar">
-        {/* Close Button */}
+      
         <div className="sticky top-0 flex justify-between items-center z-10 dark:bg-black bg-white py-6">
-          {/* Centered Title */}
+         
           <h2 className="text-center text-3xl font-bold flex-grow text-black dark:text-white">
             Create Card
           </h2>
-          {/* Spacer to occupy left side */}
-         {/* Approx width of X icon */}
-          {/* X Button on Right */}
+       
           <button
             type="button"
             onClick={() => {
@@ -61,9 +59,9 @@ export default function CardsCreate(props) {
           </button>
         </div>
 
-        {/* Form */}
+    
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Title Field */}
+       
           <div>
             <label className="font-semibold">Title</label>
             <textarea
@@ -80,7 +78,7 @@ export default function CardsCreate(props) {
             />
           </div>
 
-          {/* Question Field */}
+       
           <div>
             <label className="font-semibold">Question</label>
             <textarea
@@ -97,7 +95,7 @@ export default function CardsCreate(props) {
             />
           </div>
 
-          {/* Answer Field */}
+        
           <div>
             <label className="font-semibold">Answer</label>
             <textarea
@@ -114,7 +112,7 @@ export default function CardsCreate(props) {
             />
           </div>
 
-          {/* Image Upload */}
+        
           <div className="">
             <label className="font-medium text-gray-400">Upload Images</label>
             <input
@@ -126,7 +124,7 @@ export default function CardsCreate(props) {
             />
           </div>
 
-          {/* Image Previews */}
+        
           {formData.images.length > 0 && (
             <div className="mt-4">
               <p className="text-lg text-gray-400 mb-2">Image Previews:</p>
@@ -147,7 +145,7 @@ export default function CardsCreate(props) {
             </div>
           )}
 
-          {/* Submit Button */}
+      
           <div className="text-center">
             <button
               type="submit"
