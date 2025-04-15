@@ -37,22 +37,22 @@ export default function EditCard(props) {
   };
 
   const autoResize = (e) => {
-    e.target.style.height = "auto"; // Reset height to auto
-    e.target.style.height = `${e.target.scrollHeight}px`; // Set height based on content
+    e.target.style.height = "auto"; 
+    e.target.style.height = `${e.target.scrollHeight}px`; 
   }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 hide-scrollbar dark:text-white text-black">
-      {/* Main Container */}
+    
       <div className="w-[95%] max-h-[95vh] overflow-y-auto dark:bg-black bg-white rounded-lg shadow-2xl px-6 pb-6 hide-scrollbar">
-        {/* Close Button */}
+    
         <div className="sticky top-0 flex justify-between items-center z-10 dark:bg-black bg-white py-6">
-          {/* Centered Title */}
+    
           <h2 className="text-center text-3xl font-bold flex-grow text-black dark:text-white">
             Edit Card
           </h2>
 
-          {/* Close Button */}
+       
           <button
             type="button"
             onClick={() => {
@@ -71,9 +71,9 @@ export default function EditCard(props) {
           </button>
         </div>
 
-        {/* Form */}
+       
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Title Field */}
+    
           <div>
             <label className="font-semibold">Title</label>
             <textarea
@@ -90,7 +90,7 @@ export default function EditCard(props) {
             />
           </div>
 
-          {/* Question Field */}
+        
           <div>
             <label className="font-semibold">Question</label>
             <textarea
@@ -107,7 +107,7 @@ export default function EditCard(props) {
             />
           </div>
 
-          {/* Answer Field */}
+        
           <div>
             <label className="font-semibold">Answer</label>
             <textarea
@@ -124,7 +124,7 @@ export default function EditCard(props) {
             />
           </div>
 
-          {/* Image Upload */}
+         
           <div className="">
             <label className="text-gray-400 font-medium">Upload Images</label>
             <input
@@ -135,8 +135,7 @@ export default function EditCard(props) {
               className="w-full text-sm text-gray-400 file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-none file:text-white file:bg-sky-500 hover:file:bg-sky-600 cursor-pointer"
             />
           </div>
-
-          {/* Image Previews */}
+ 
           {formData.images.length > 0 && (
             <div className="mt-4">
               <p className="text-lg text-gray-400 mb-2">Image Previews:</p>
@@ -150,7 +149,7 @@ export default function EditCard(props) {
                       src={
                         image instanceof File
                           ? URL.createObjectURL(image)
-                          : image // Handle case for URLs in props.images
+                          : image 
                       }
                       alt={`Preview ${index}`}
                       className="object-cover w-full h-full"
@@ -161,7 +160,7 @@ export default function EditCard(props) {
             </div>
           )}
 
-          {/* Submit Button */}
+      
           <div className="text-center">
             <button
               type="submit"
