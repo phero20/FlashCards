@@ -39,12 +39,12 @@ export default function FlipCard(props) {
           height: "100%",
         }}
       >
-        {/* Header */}
+       
         <h1 className="text-xl font-semibold mb-4">
           {isBack ? "Answer Side" : "Question Side"}
         </h1>
 
-        {/* Close Button */}
+    
         <div className="absolute top-1 right-1 z-20 p-2">
           <button
             type="button"
@@ -59,7 +59,7 @@ export default function FlipCard(props) {
           </button>
         </div>
 
-        {/* Image Slider */}
+    
         <div className="relative w-full mb-4">
           {props.images.length > 1 && (
             <button
@@ -76,8 +76,8 @@ export default function FlipCard(props) {
   style={{
     scrollBehavior: "smooth",
     WebkitOverflowScrolling: "touch",
-    msOverflowStyle: "none", // IE & Edge
-    scrollbarWidth: "none",  // Firefox
+    msOverflowStyle: "none", 
+    scrollbarWidth: "none",  
   }}
 >
             {props.images.map((image, index) => (
@@ -100,14 +100,14 @@ export default function FlipCard(props) {
           )}
         </div>
 
-        {/* Scrollable Text */}
+     
         <div
           className="w-full flex-1 overflow-y-auto px-2 text-center scrollbar-hide"
           style={{
             WebkitOverflowScrolling: "touch",
             touchAction: "pan-y",
-            msOverflowStyle: "none", // for IE & Edge
-            scrollbarWidth: "none", // for Firefox
+            msOverflowStyle: "none", 
+            scrollbarWidth: "none", 
           }}
         >
           <p className="text-lg break-words whitespace-pre-wrap">
@@ -115,7 +115,7 @@ export default function FlipCard(props) {
           </p>
         </div>
 
-        {/* Flip Button */}
+      
         <button
           onClick={() => setIsFlipped(!isBack)}
           className="absolute bottom-3 right-3 px-2 py-2 bg-gray-600 bg-opacity-65 rounded-full"
