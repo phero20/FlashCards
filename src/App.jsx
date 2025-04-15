@@ -71,14 +71,15 @@ function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [images, setImages] = useState([]);
-  const [folderOpen, setFolderOpen] = useState(false);
-
   const [folderIndex, setFolderIndex] = useState("");
   const [folderName, setFolderName] = useState("");
   const [cardEditOpen, setCardEditOpen] = useState(false);
   const [cardIndex, setCardIndex] = useState("");
   const [loading1, setloading1] = useState(false);
+  const [cards, setCards] = useState([]);
 
+
+  
   const handleAuth = async (username, email, password, isLoginMode) => {
     try {
       let user, userDocRef;
@@ -99,7 +100,7 @@ function App() {
         );
         user = userCredential.user;
         setLoading(true);
-        // Create a new Firestore document for the user
+       
         userDocRef = doc(db, "users", user.uid);
         await setDoc(userDocRef, {
           username,
@@ -174,7 +175,7 @@ function App() {
         }, 2000);
       }
     });
-    return () => unsubscribe(); // Clean up listener
+    return () => unsubscribe(); 
   }, []);
 
   const addDeck = async (folderName, coverImage) => {
@@ -211,15 +212,15 @@ function App() {
         },
       ];
 
-      setFolders(updatedFolders); // Update local state
-      await updateDoc(userDocRef, { folders: updatedFolders }); // Update Firestore
+      setFolders(updatedFolders); 
+      await updateDoc(userDocRef, { folders: updatedFolders }); 
       setloading1(false);
     } catch (error) {
       alert("Error adding folder:", error.message);
     }
   };
 
-  // Edit or Delete Folder Logic
+
   const handleFolderEdit = async (index, action, imageUrl, folderName) => {
     const user = auth.currentUser;
 
@@ -242,17 +243,17 @@ function App() {
         updatedFolders.splice(index, 1);
       } else if (action === "edit") {
         setEditOpen(true);
-        return; // Skip Firestore update until edits are saved
+        return; 
       }
 
-      setFolders(updatedFolders); // Update local state
-      await updateDoc(userDocRef, { folders: updatedFolders }); // Update Firestore
+      setFolders(updatedFolders); 
+      await updateDoc(userDocRef, { folders: updatedFolders }); 
     } catch (error) {
       alert("Error updating folder:", error.message);
     }
   };
 
-  // Update Folder Logic in Edit Modal
+
   const editDeck = async (folderName, coverImage) => {
     const user = auth.currentUser;
 
@@ -288,8 +289,8 @@ function App() {
         };
       }
 
-      setFolders(updatedFolders); // Update local state
-      await updateDoc(userDocRef, { folders: updatedFolders }); // Update Firestore
+      setFolders(updatedFolders); 
+      await updateDoc(userDocRef, { folders: updatedFolders }); 
       setEditOpen(false);
       setloading1(false);
     } catch (error) {
@@ -297,13 +298,9 @@ function App() {
     }
   };
 
-  // Folder Open handler
 
-  const handleBack = () => {
-    setFolderOpen(false);
-  };
 
-  const [cards, setCards] = useState([]);
+ 
 
   const addCard = async (formData) => {
     const user = auth.currentUser;
@@ -316,27 +313,27 @@ function App() {
       setloading1(true);
       const { title, question, answer, images } = formData;
 
-      // Validate required fields
+     
       if (!title || !question || !answer) {
         throw new Error("Title, question, and answer are required.");
       }
 
       let imageUrls = [];
       if (images.length > 0) {
-        // Upload images to Cloudinary
+       
         const imageUploadPromises = images.map(async (image) => {
           const formData = new FormData();
           formData.append("file", image);
           formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
           const response = await axios.post(CLOUDINARY_URL, formData);
-          return response.data.secure_url; // Return the secure URL
+          return response.data.secure_url; 
         });
 
-        imageUrls = await Promise.all(imageUploadPromises); // Wait for all uploads
+        imageUrls = await Promise.all(imageUploadPromises); 
       }
 
-      // Create a new card object
+     
       const newCard = {
         title,
         question,
@@ -345,7 +342,7 @@ function App() {
         createdAt: new Date().toISOString(),
       };
 
-      // Fetch current user's folders from Firestore
+      
       const userDocRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userDocRef);
 
@@ -356,17 +353,17 @@ function App() {
       const userData = userDoc.data();
       const updatedFolders = [...(userData.folders || [])];
 
-      // Validate folderIndex
+    
       if (folderIndex < 0 || folderIndex >= updatedFolders.length) {
         throw new Error("Invalid folder index.");
       }
 
-      // Add the card to the target folder
+
       const folder = updatedFolders[folderIndex];
       folder.cards = [...(folder.cards || []), newCard];
       updatedFolders[folderIndex] = folder;
 
-      // Update Firestore
+     
       await updateDoc(userDocRef, { folders: updatedFolders });
       setFolders(updatedFolders);
       setCards(folder.cards);
@@ -398,24 +395,24 @@ function App() {
       const userDocRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userDocRef);
 
-      // Ensure the userData object exists and contains folders
+    
       const userData = userDoc.data();
       if (!userData?.folders || !Array.isArray(userData.folders)) {
         alert("No folders found for the user.");
         return;
       }
 
-      // Clone the folders for editing
+     
       const updatedFolders = [...userData.folders];
 
-      // Access the target folder
+     
       const folder = updatedFolders[folderIndex];
       if (!folder || !Array.isArray(folder.cards)) {
         alert("Invalid folder or no cards found.");
         return;
       }
 
-      // Perform the delete action
+    
       if (action === "delete") {
         setCardIndex(cardIndex);
         folder.cards.splice(cardIndex, 1);
@@ -445,15 +442,15 @@ function App() {
       setloading1(true);
       const { title, question, answer, images } = updatedCardData; // Destructure updated data
 
-      // Validate required fields
+    
       if (!title || !question || !answer) {
         alert("Title, question, and answer are required.");
         return;
       }
 
-      let imageUrls = []; // To hold the updated image URLs
+      let imageUrls = []; 
 
-      // Check for new images (instances of File) and upload them to Cloudinary
+    
       if (images && images.length > 0) {
         const imageUploadPromises = images.map(async (image) => {
           if (image instanceof File) {
@@ -462,16 +459,15 @@ function App() {
             formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
             const response = await axios.post(CLOUDINARY_URL, formData);
-            return response.data.secure_url; // Return the uploaded image URL
+            return response.data.secure_url; 
           } else {
-            return image; // Keep existing image URLs as is
+            return image; 
           }
         });
 
-        imageUrls = await Promise.all(imageUploadPromises); // Wait for all uploads
+        imageUrls = await Promise.all(imageUploadPromises); 
       }
-
-      // Fetch current user's data from Firestore
+ 
       const userDocRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userDocRef);
 
@@ -482,12 +478,12 @@ function App() {
       const userData = userDoc.data();
       const updatedFolders = [...(userData.folders || [])];
 
-      // Validate folderIndex
+     
       if (folderIndex < 0 || folderIndex >= updatedFolders.length) {
         throw new Error("Invalid folder index.");
       }
 
-      // Validate cardIndex
+      
       const folder = updatedFolders[folderIndex];
       if (
         !folder ||
@@ -498,24 +494,24 @@ function App() {
         throw new Error("Invalid card index.");
       }
 
-      // Update the specific card with new data
+     
       const updatedCard = {
         ...folder.cards[cardIndex],
         title,
         question,
         answer,
-        images: imageUrls, // Updated image URLs
-        updatedAt: new Date().toISOString(), // Track when the card was edited
+        images: imageUrls, 
+        updatedAt: new Date().toISOString(), 
       };
 
-      folder.cards[cardIndex] = updatedCard; // Replace the card in the folder
+      folder.cards[cardIndex] = updatedCard; 
 
-      // Update Firestore with the modified folders
+     
       await updateDoc(userDocRef, { folders: updatedFolders });
 
-      // **Ensure UI Updates Immediately**
-      setFolders(updatedFolders); // Sync local folders state
-      setCards(folder.cards); // Sync local cards for the currently opened folder
+     
+      setFolders(updatedFolders); 
+      setCards(folder.cards); 
       setloading1(false);
     } catch (error) {
       alert("Error updating card:", error.message);
@@ -540,7 +536,6 @@ function App() {
   const navigate = useNavigate();
 
   const openFolder = (cards, folderName, index) => {
-    // handleOpenFolder(cards);
     setCards(cards);
     setFolderName(folderName);
     setFolderIndex(index);
@@ -623,8 +618,6 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         )}
-
-        {/* EditDeck Modal */}
         <div
           className={`${
             editOpen
@@ -651,8 +644,6 @@ function App() {
             )}
           </div>
         </div>
-
-        {/* EditCard Modal */}
         <div
           className={`${
             cardEditOpen
@@ -681,8 +672,6 @@ function App() {
             )}
           </div>
         </div>
-
-        {/* FlipCard Modal */}
         <div
           className={`${
             isCardOpen
@@ -697,7 +686,7 @@ function App() {
                 : "scale-50 -translate-x-full"
             } w-full max-w-2xl transition-transform duration-700 ease-in-out flex justify-center items-center relative`}
           >
-            {/* Left Button */}
+          
             <button
               className="absolute left-0 px-2 py-2 dark:bg-gray-700 bg-opacity-90 bg-gray-400 dark:text-white text-black rounded-full z-10 disabled:opacity-0"
               onClick={handlePrev}
@@ -706,7 +695,7 @@ function App() {
               <ChevronLeft size={24} />
             </button>
 
-            {/* FlipCard with animation */}
+          
             <AnimatePresence mode="wait">
               {cards.length > 0 && (
                 <motion.div
@@ -726,7 +715,7 @@ function App() {
               )}
             </AnimatePresence>
 
-            {/* Right Button */}
+           
             <button
               className="absolute right-0 px-2 py-2 dark:bg-gray-700 bg-opacity-90 bg-gray-400 dark:text-white text-black rounded-full z-10 disabled:opacity-0"
               onClick={handleNext}
