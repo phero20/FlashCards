@@ -12,11 +12,11 @@ const FolderCard = (props) => {
       className={`${props.color.bg} text-white p-4 rounded-2xl shadow-lg w-40 relative overflow-hidden cursor-pointer`}
       onClick={()=>props.handleOpenFolder(props.cards,props.folderName,props.index)}
     >
-      {/* 3-Dots Menu */}
+     
       <div className="absolute top-5 right-2 z-10 menu">
         <button
           onClick={(e) => {
-            e.stopPropagation(); // Prevent folder opening
+            e.stopPropagation(); 
             setMenuOpen(!menuOpen);
           }}
         >
@@ -30,7 +30,7 @@ const FolderCard = (props) => {
             <button
               className={`w-full px-4 py-2 text-sm flex justify-evenly`}
               onClick={(e) => {
-                e.stopPropagation(); // Prevent folder opening
+                e.stopPropagation(); 
                 props.handleFolderEdit(
                   props.index,
                   "edit",
@@ -44,7 +44,7 @@ const FolderCard = (props) => {
             <button
               className={`flex w-full px-3 py-2 text-sm justify-evenly`}
               onClick={(e) => {
-                e.stopPropagation(); // Prevent folder opening
+                e.stopPropagation(); 
                 props.handleFolderEdit(props.index, "delete");
               }}
             >
@@ -54,7 +54,7 @@ const FolderCard = (props) => {
         )}
       </div>
 
-      {/* Background Design */}
+   
       <div className="absolute inset-0">
         <svg
           viewBox="0 0 400 200"
